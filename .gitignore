@@ -1,0 +1,4 @@
+inputs/*
+
+# include .gitkeep files
+!**gitkeep

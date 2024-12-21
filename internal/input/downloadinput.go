@@ -6,11 +6,19 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"AdventOfCode2024/internal/xerrors"
 )
 
 var AocRootURL = "https://adventofcode.com/2024"
 
 func Download(session, day string) error {
+	if session == "" {
+		return xerrors.SessionTokenMissingError
+	}
+	if day == "" {
+		day = "1"
+	}
 
 	log.Printf("downloading input for day %s\n", day)
 
@@ -34,11 +42,10 @@ func Download(session, day string) error {
 	sb := string(body)
 
 	f, err := os.Create(fmt.Sprintf("inputs/day%s.txt", day))
-	defer f.Close()
-
 	if err != nil {
 		return err
 	}
+	defer f.Close()
 
 	_, err = f.WriteString(sb)
 	if err != nil {

@@ -1,7 +1,6 @@
 package day1
 
 import (
-	"errors"
 	"log"
 	"os"
 	"slices"
@@ -9,13 +8,7 @@ import (
 	"strings"
 )
 
-func Solve(part string, example bool) error {
-	if part != "1" && part != "2" {
-		return errors.New("invalid part specified; it should be either `1` or `2`")
-	}
-
-	log.Printf("solving day 1 part %s\n", part)
-
+func Solve(part2 bool, example bool) error {
 	var filename string
 	if example {
 		filename = "inputs/day1_example.txt"
@@ -30,6 +23,23 @@ func Solve(part string, example bool) error {
 
 	inputString := string(inputBytes)
 
+	if part2 {
+		err := solvePartTwo(inputString)
+		if err != nil {
+			return err
+		}
+	} else {
+		err := solvePartOne(inputString)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func solvePartOne(inputString string) error {
+	log.Println("solving day 1 part 1")
 	lines := strings.Split(inputString, "\n")
 	var left []int
 	var right []int
@@ -67,6 +77,12 @@ func Solve(part string, example bool) error {
 	}
 
 	log.Printf("the result is: %d\n", result)
+
+	return nil
+}
+
+func solvePartTwo(inputString string) error {
+	log.Println("solving day 1 part 2")
 
 	return nil
 }

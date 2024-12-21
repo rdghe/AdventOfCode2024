@@ -84,5 +84,41 @@ func solvePartOne(inputString string) error {
 func solvePartTwo(inputString string) error {
 	log.Println("solving day 1 part 2")
 
+	lines := strings.Split(inputString, "\n")
+	var left []int
+	var right []int
+
+	for _, line := range lines {
+		// Split each line into fields
+		fields := strings.Fields(line)
+
+		if len(fields) == 2 {
+			// Convert the fields to integers and append them to the respective slices
+			leftNum, err := strconv.Atoi(fields[0])
+			if err != nil {
+				return err
+			}
+			rightNum, err := strconv.Atoi(fields[1])
+			if err != nil {
+				return err
+			}
+			left = append(left, leftNum)
+			right = append(right, rightNum)
+		}
+	}
+
+	similarityScore := 0
+	for _, leftNumber := range left {
+		appearances := 0
+		for _, rightNumber := range right {
+			if leftNumber == rightNumber {
+				appearances++
+			}
+		}
+		similarityScore += leftNumber * appearances
+	}
+
+	log.Printf("the result is: %d\n", similarityScore)
+
 	return nil
 }

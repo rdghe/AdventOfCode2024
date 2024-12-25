@@ -123,7 +123,6 @@ func solvePartTwo(inputString string) error {
 		for i := 0; i < len(numbers); i++ {
 			log.Printf("removing %v with index %v", numbers[i], i)
 			// Create a new array with the i-th level removed
-			//modified := append(numbers[:i], numbers[i+1:]...)
 			modified := make([]int, len(numbers)-1)
 			copy(modified, numbers[:i])
 			copy(modified[i:], numbers[i+1:])

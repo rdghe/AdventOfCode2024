@@ -8,6 +8,7 @@ import (
 
 	"AdventOfCode2024/internal/day1"
 	"AdventOfCode2024/internal/day2"
+	"AdventOfCode2024/internal/day3"
 	"AdventOfCode2024/internal/input"
 	"AdventOfCode2024/internal/xerrors"
 )
@@ -34,6 +35,7 @@ func init() {
 var solvers = map[int]func(bool, bool) error{
 	1: day1.Solve,
 	2: day2.Solve,
+	3: day3.Solve,
 	// Add more solvers as needed
 }
 
